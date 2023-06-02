@@ -29,11 +29,14 @@
     "helmet": "7.0.0",
     "module-alias": "^2.2.2",
     "morgan": "1.10.0",
-    "reflect-metadata": "0.1.13"
+    "node-emoji": "2.0.2",
+    "reflect-metadata": "0.1.13",
+    "winston": "3.9.0"
   },
   "_moduleAliases": {
     "@routes": "src/routes",
-    "@infrastructure": "src/infrastructure"
+    "@infrastructure": "src/infrastructure",
+    "@common": "src/common"
   },
   "eslintConfig": {
     "parserOptions": {
