@@ -1,6 +1,6 @@
 import { UserLoginRequestModel, UserLoginResponseModel } from '@domain/models/auth/useraccount-model'
 import { UserLoginUseCase } from '@domain/ports/in/login-usecase'
-import { UserRepositoryPort } from '@domain/ports/out/user-reposityory'
+import { UserRepositoryPort } from '@domain/ports/repositories/user-reposityory'
 
 export class UserLoginUseCaseImpl implements UserLoginUseCase {
   constructor (

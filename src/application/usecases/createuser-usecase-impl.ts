@@ -1,6 +1,6 @@
 import { UserRegisterRequesModel } from '@domain/models/auth/useraccount-model'
 import { CreateUserUseCase } from '@domain/ports/in/createuser-usecase'
-import { UserRepositoryPort } from '@domain/ports/out/user-reposityory'
+import { UserRepositoryPort } from '@domain/ports/repositories/user-reposityory'
 
 export class CreateUserUseCaseImpl implements CreateUserUseCase {
   constructor (
