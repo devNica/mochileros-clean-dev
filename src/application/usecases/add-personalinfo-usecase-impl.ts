@@ -1,6 +1,6 @@
 import { PersonalInfoModel } from '@domain/models/auth/useraccount-model'
-import { AddPersonalInfoUseCase } from '@domain/ports/in/add-personalinfo-usecase'
-import { UserRepositoryPort } from '@domain/ports/repositories/user-reposityory'
+import { AddPersonalInfoUseCase } from '@domain/usecases/add-personalinfo-usecase'
+import { UserRepositoryPort } from '@domain/repositories/user-reposityory'
 
 export class AddPersonalInfoUseCaseImpl implements AddPersonalInfoUseCase {
   constructor (
