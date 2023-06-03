@@ -36,7 +36,7 @@
   "_moduleAliases": {
     "@routes": "src/routes",
     "@infrastructure": "src/infrastructure",
-    "@common": "src/common",
+    "@shared": "src/shared",
     "@domain": "src/domain"
   },
   "eslintConfig": {
