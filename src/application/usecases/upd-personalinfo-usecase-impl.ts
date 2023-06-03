@@ -1,6 +1,6 @@
 import { UpdatePersonalInfoRequestModel } from '@domain/models/auth/useraccount-model'
-import { UpdatePersonalInfoUsecase } from '@domain/ports/in/upd-personalinfo-usecase'
-import { UserRepositoryPort } from '@domain/ports/repositories/user-reposityory'
+import { UpdatePersonalInfoUsecase } from '@domain/usecases/upd-personalinfo-usecase'
+import { UserRepositoryPort } from '@domain/repositories/user-reposityory'
 
 export class UpdatePersonalInfoUseCaseImpl implements UpdatePersonalInfoUsecase {
   constructor (
