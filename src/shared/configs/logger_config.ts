@@ -1,4 +1,4 @@
-import { format, transports, createLogger, Logger } from 'winston'
+import { format, transports } from 'winston'
 
 const {
   timestamp,
@@ -37,27 +37,8 @@ const productLoggerConfig = {
     maxsize: 512000,
     maxFiles: 5,
     // eslint-disable-next-line n/no-path-concat
-    filename: `${__dirname}/../logs/logger.log`
+    filename: `${__dirname}/../../../logs/logger.log`
   })]
 }
 
-class WinstonLogger {
-  private readonly logger: Logger
-
-  constructor (
-    private readonly enviroment: string
-  ) {
-    const options = this.enviroment === 'development' ? devLoggerConfig : productLoggerConfig
-    this.logger = createLogger(options)
-  }
-
-  logInfo (message: string): Logger {
-    return this.logger.info(message)
-  }
-
-  logError (message: string): Logger {
-    return this.logger.error(message)
-  }
-}
-
-export const wLogger = new WinstonLogger('development')
+export { devLoggerConfig, productLoggerConfig }

@@ -1,6 +1,7 @@
 import 'dotenv/config'
 
 export default {
+  NODE_ENV: process.env.NODE_ENV ?? 'development',
   SERVER_PORT: process.env.SERVER_PORT ?? 8900,
   DB_NAME: process.env.DB_NAME,
   DB_USER: process.env.DB_USER,
