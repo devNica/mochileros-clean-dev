@@ -36,6 +36,7 @@
   "_moduleAliases": {
     "@routes": "src/routes",
     "@infrastructure": "src/infrastructure",
+    "@application": "src/application",
     "@shared": "src/shared",
     "@domain": "src/domain"
   },

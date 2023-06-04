@@ -3,13 +3,12 @@ import constants from '@shared/constants'
 import { LoggerAdapterModel } from '../../application/ports/logger/logger'
 import { createLogger, Logger } from 'winston'
 
-class WinstonLoggerAdapter implements LoggerAdapterModel {
+export class WinstonLoggerAdapter implements LoggerAdapterModel {
   private readonly logger: Logger
 
   constructor (
-    private readonly enviroment: string
   ) {
-    const options = this.enviroment === 'development' ? devLoggerConfig : productLoggerConfig
+    const options = constants.NODE_ENV === 'development' ? devLoggerConfig : productLoggerConfig
     this.logger = createLogger(options)
   }
 
@@ -21,5 +20,3 @@ class WinstonLoggerAdapter implements LoggerAdapterModel {
     this.logger.error(message)
   }
 }
-
-export const wLogger = new WinstonLoggerAdapter(constants.NODE_ENV)

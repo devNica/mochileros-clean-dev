@@ -1,12 +1,12 @@
 export interface UserModel {
-  userId?: string
+  userId: string
   email: string
   passwordHash: string
   phoneNumber: string
   isActive: boolean
 }
 
-export interface UserRegisterRequesModel extends Omit<UserModel, 'userId' | 'isActive'> { }
+export interface UserRegisterRequestModel extends Omit<UserModel, 'userId' | 'isActive'> {}
 
 export interface PersonalInfoModel {
   userId: string

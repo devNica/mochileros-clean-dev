@@ -1,5 +1,5 @@
-import { UserRegisterRequesModel } from '@domain/models/auth/useraccount-model'
+import { UserRegisterRequestModel } from '@domain/models/auth/useraccount-model'
 
 export interface CreateUserUseCase {
-  create: (data: UserRegisterRequesModel) => Promise<void>
+  create: (data: UserRegisterRequestModel) => Promise<void>
 }
