@@ -26,6 +26,7 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
+    "argon2": "0.30.3",
     "cors": "2.8.5",
     "express": "4.18.2",
     "helmet": "7.0.0",
@@ -42,6 +43,7 @@
   "_moduleAliases": {
     "@routes": "src/routes",
     "@infrastructure": "src/infrastructure",
+    "@interface": "src/interface",
     "@application": "src/application",
     "@shared": "src/shared",
     "@domain": "src/domain",

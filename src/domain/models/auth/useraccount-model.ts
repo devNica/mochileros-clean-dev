@@ -1,12 +1,26 @@
+import { UserAccountStatusMap } from '../maps/useraccount_status_model'
+
 export interface UserAccountModel {
   userId: string
   email: string
-  passwordHash: string
+  password: string
   phoneNumber: string
-  isActive: boolean
+  accountStatus: keyof typeof UserAccountStatusMap
 }
 
 export interface SignupRequestModel extends Omit<UserAccountModel, 'userId' | 'isActive'> {}
+
+export interface SignupRepositoryInputModel extends Omit<UserAccountModel, 'userId' | 'password' | 'accountStatus' > {
+  passwordHashed: string
+  userAccountStatusId: number
+}
+
+export interface SignupRepositoryOutputModel {
+  userId: string
+  createdAt: string
+}
+
+export interface SignupResponseModel extends SignupRepositoryOutputModel {}
 
 export interface PersonalInfoModel {
   userId: string
