@@ -1,10 +1,10 @@
 import { PersonalInfoModel } from '@domain/models/auth/useraccount-model'
-import { AddPersonalInfoUseCase } from '@domain/usecases/add-personalinfo-usecase'
-import { UserRepositoryPort } from '@domain/repositories/user-reposityory'
+import { AddPersonalInfoUseCase } from '@domain/usecases/add_personalinfo_usecase'
+import { UserAccountRepositoryPort } from '@domain/repositories/useraccount_reposityory'
 
 export class AddPersonalInfoUseCaseImpl implements AddPersonalInfoUseCase {
   constructor (
-    private readonly userRepositoryPort: UserRepositoryPort
+    private readonly userRepositoryPort: UserAccountRepositoryPort
   ) {}
 
   async addPersonalInfo (data: PersonalInfoModel): Promise<boolean> {

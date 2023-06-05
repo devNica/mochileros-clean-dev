@@ -1,4 +1,4 @@
-export interface UserModel {
+export interface UserAccountModel {
   userId: string
   email: string
   passwordHash: string
@@ -6,7 +6,7 @@ export interface UserModel {
   isActive: boolean
 }
 
-export interface UserRegisterRequestModel extends Omit<UserModel, 'userId' | 'isActive'> {}
+export interface SignupRequestModel extends Omit<UserAccountModel, 'userId' | 'isActive'> {}
 
 export interface PersonalInfoModel {
   userId: string
@@ -20,8 +20,8 @@ export type AddPersonalInfoRequestModel = PersonalInfoModel
 
 export interface UpdatePersonalInfoRequestModel extends Omit<PersonalInfoModel, 'userId' | 'dni'> {}
 
-export interface UserLoginRequestModel extends Omit<UserModel, 'userId' | 'phoneNumber' | 'isActive'> {}
+export interface SigninRequestModel extends Omit<UserAccountModel, 'userId' | 'phoneNumber' | 'isActive'> {}
 
-export interface UserLoginResponseModel extends UserModel {
+export interface SigninResponseModel extends UserAccountModel {
   info: Omit<PersonalInfoModel, 'userId'>
 }
