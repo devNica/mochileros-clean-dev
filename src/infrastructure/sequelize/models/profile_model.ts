@@ -2,7 +2,9 @@ import { DataTypes, Model } from 'sequelize'
 import { ProfileEntity } from '../entities/profile_entity'
 import sequelizeInstance from '@infrastructure/configs/sequelize_config'
 
-export default class ProfileModel extends Model<ProfileEntity> implements ProfileEntity {
+export interface ProfileAttrInput extends Required<ProfileEntity> {}
+
+export default class ProfileModel extends Model<ProfileEntity, ProfileAttrInput> implements ProfileEntity {
   id: number
   rol: string
 }
@@ -12,6 +14,7 @@ ProfileModel.init({
     type: DataTypes.INTEGER,
     primaryKey: true,
     allowNull: false,
+    unique: true,
     autoIncrement: true
   },
   rol: {

@@ -16,5 +16,6 @@ export interface PersonalInfoEntity {
   lastname: string
   dni: string
   address: string
-  fkUser: number
+  fk_user: string
+  fk_country: number
 }
