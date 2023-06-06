@@ -10,7 +10,6 @@ import { setupRoutes } from './setup/setup-routes'
 import { setupProxy } from './setup/setup-proxy'
 import { WinstonLoggerAdapter } from '@infrastructure/adapters/logger_adapter'
 import constants from '@shared/constants'
-import { setupResponseMiddleware } from './setup/setup-response-middleware'
 import { SequelizeDatabaseAdapter } from '@infrastructure/adapters/sequelize_adapter'
 
 const app = express()
@@ -29,6 +28,5 @@ db.syncModels(constants.SEQUELIZE_CONFIG_ALTER)
 setupProxy(app)
 setupGlobalMiddlewares(app)
 setupRoutes(app, api())
-setupResponseMiddleware(app)
 
 app.listen(constants.SERVER_PORT, () => logger.LogInfo(`🚀 Server is running on port: ${String(constants.SERVER_PORT)}`))

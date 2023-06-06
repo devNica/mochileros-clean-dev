@@ -15,16 +15,12 @@ export const HttpStatusMap: Record<HttpStatusResponse, number> = {
   unprocessableEntityRequest: 422
 }
 
-export interface HttpResponseModel<T> {
-  type: HttpStatusResponse
-  message: string
+export interface ResponseModel<T> {
   body: T
-}
-
-export interface HttpResponseAdapterModel<T> extends HttpResponseModel<T> {
+  message: string
   code: number
 }
 
-export interface HttpResponseHandlerModel<T> {
-  response: (body: T, type: HttpStatusResponse, message: string) => Promise<HttpResponseModel<T>>
+export interface HttpResponseHandler<T> {
+  response: (body: T, message: string) => Promise<ResponseModel<T>>
 }
