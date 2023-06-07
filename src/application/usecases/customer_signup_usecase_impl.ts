@@ -1,23 +1,24 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { SignupRepositoryInputModel, SignupRequestModel, SignupResponseModel } from '@domain/models/auth/useraccount-model'
-import { UserSignupUseCase } from '@domain/usecases/signup_usecase'
-import { CreateUserRepositoryPort } from '@domain/repositories/useraccount/create_user_repository'
+import { CustomerSignupUseCase } from '@domain/usecases/customer_signup_usecase'
+import { CreateCustomerRepositoryPort } from '@domain/repositories/useraccount/create_customer_repository'
 import { PasswordHasher } from '@application/ports/security/password'
-import { UserAccountStatusMap } from '@domain/models/maps/useraccount_status_model'
+import { UserAccountStatusMap, UserProfileMap } from '@domain/models/maps/useraccount_status_model'
 
-export class UserSignupUseCaseImpl implements UserSignupUseCase {
+export class CustomerSignupUseCaseImpl implements CustomerSignupUseCase {
   constructor (
-    private readonly port: CreateUserRepositoryPort,
+    private readonly port: CreateCustomerRepositoryPort,
     private readonly hasher: PasswordHasher
   ) {}
 
-  async userSignup (request: SignupRequestModel): Promise<SignupResponseModel> | never {
+  async customerSignup (request: SignupRequestModel): Promise<SignupResponseModel> | never {
     /** prepare input data to the repository */
     const data: SignupRepositoryInputModel = {
       email: request.email,
       passwordHashed: await this.hasher.hashPassword(request.password),
       phoneNumber: request.phoneNumber,
-      userAccountStatusId: UserAccountStatusMap.unverifiableIdentity
+      userAccountStatusId: UserAccountStatusMap.unverifiableIdentity,
+      profileId: UserProfileMap.customers
     }
     return await this.userCreate(data)
   }

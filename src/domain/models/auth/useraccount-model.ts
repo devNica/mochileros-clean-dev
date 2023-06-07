@@ -13,6 +13,7 @@ export interface SignupRequestModel extends Omit<UserAccountModel, 'userId' | 'a
 export interface SignupRepositoryInputModel extends Omit<UserAccountModel, 'userId' | 'password' | 'accountStatus' > {
   passwordHashed: string
   userAccountStatusId: number
+  profileId: number
 }
 
 export interface SignupRepositoryOutputModel {

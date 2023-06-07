@@ -9,8 +9,7 @@ export const setupRoutes = (app: Application, api: APIType[]): void => {
   })
 
   /** any route that is not defined will result in a server error */
-  app.use((_req, _res) => {
-    const error = new Error('Internal Server Error')
-    HttpResponseAdapter.response({}, 'internalServerErrorRequest', error.message)
+  app.use((_req, _res, next) => {
+    next(HttpResponseAdapter.response({}, 'internalServerErrorRequest', 'Internal Server Error'))
   })
 }

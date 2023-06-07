@@ -4,13 +4,13 @@ import { RequestValidationError } from '@application/ports/error/request_validat
 import { HttpRequestModel } from '@application/ports/http/http-requets'
 import { HttpResponseHandler, ResponseModel } from '@application/ports/http/http-response'
 import { SignupRequestModel, SignupResponseModel } from '@domain/models/auth/useraccount-model'
-import { UserSignupUseCase } from '@domain/usecases/signup_usecase'
+import { CustomerSignupUseCase } from '@domain/usecases/customer_signup_usecase'
 import { WinstonLoggerAdapter } from '@infrastructure/adapters/logger_adapter'
 import { objectKeyExists } from '@shared/helpers/objects/object_key_exists'
 
-export class SignupController implements Controller<{} | never> {
+export class CustomerSignupController implements Controller<{} | never> {
   constructor (
-    private readonly userSignupUC: UserSignupUseCase,
+    private readonly customerSignupUC: CustomerSignupUseCase,
     private readonly presenter: HttpResponseHandler<SignupResponseModel>,
     private readonly logger: WinstonLoggerAdapter
   ) {
@@ -25,7 +25,7 @@ export class SignupController implements Controller<{} | never> {
 
       const { email, password, phoneNumber } = request.body
 
-      const user = await this.userSignupUC.userSignup({
+      const user = await this.customerSignupUC.customerSignup({
         email,
         password,
         phoneNumber

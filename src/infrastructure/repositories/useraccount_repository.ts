@@ -1,19 +1,35 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { SigninResponseModel, SignupRepositoryInputModel, SignupRepositoryOutputModel } from '@domain/models/auth/useraccount-model'
 import { FindUserByEmailPort } from '@domain/repositories/useraccount/find_user_by_email_repository'
-import { CreateUserRepositoryPort } from '@domain/repositories/useraccount/create_user_repository'
+import { CreateCustomerRepositoryPort } from '@domain/repositories/useraccount/create_customer_repository'
 import UserAccountModel from '@infrastructure/sequelize/models/user_account_model'
+import sequelizeInstance from '@infrastructure/configs/sequelize_config'
+import UserProfileModel from '@infrastructure/sequelize/models/user_profile_model'
 
-export class UserRepositoryImpl implements CreateUserRepositoryPort, FindUserByEmailPort {
+export class UserRepositoryImpl implements CreateCustomerRepositoryPort, FindUserByEmailPort {
   async create (data: SignupRepositoryInputModel): Promise<SignupRepositoryOutputModel | null> {
     const { email, passwordHashed, phoneNumber, userAccountStatusId } = data
-    const user = await UserAccountModel.create({
-      email,
-      password: passwordHashed,
-      phoneNumber,
-      isRoot: false,
-      fk_status: userAccountStatusId
+
+    let user = {
+      id: '',
+      createdAt: ''
+    }
+
+    await sequelizeInstance.transaction(async (t) => {
+      user = await UserAccountModel.create({
+        email,
+        password: passwordHashed,
+        phoneNumber,
+        isRoot: false,
+        fk_status: userAccountStatusId
+      }, { transaction: t })
+
+      await UserProfileModel.create({
+        fk_user: user.id,
+        fk_profile: data.profileId
+      }, { transaction: t })
     })
+
     if (!user) return null
     return { userId: user.id, createdAt: user.createdAt }
   }

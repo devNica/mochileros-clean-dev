@@ -6,15 +6,15 @@ import { expressMiddlewareAdapter } from '@infrastructure/adapters/express_middl
 import { expressRouteAdapter } from '@infrastructure/adapters/express_route_adapter'
 import { Router } from 'express'
 
-export const UserAccountRouter = Router()
+export const AuthRouter = Router()
 
 // controllers
-const { signupController, signinController } = UserAccountControllerFactory()
+const { customerSignupController, signinController } = UserAccountControllerFactory()
 
-UserAccountRouter.post('/signup',
+AuthRouter.post('/customer',
   expressMiddlewareAdapter(RequestValidationMiddlewareFactory(signupSchema)),
-  expressRouteAdapter(signupController))
+  expressRouteAdapter(customerSignupController))
 
-UserAccountRouter.post('/signin',
+AuthRouter.post('/signin',
   expressMiddlewareAdapter(RequestValidationMiddlewareFactory(signinSchema)),
   expressRouteAdapter(signinController))

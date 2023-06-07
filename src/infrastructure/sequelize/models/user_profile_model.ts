@@ -2,7 +2,7 @@ import { DataTypes, Model } from 'sequelize'
 import { UserProfileEntity } from '../entities/user_profile_entity'
 import sequelizeInstance from '@infrastructure/configs/sequelize_config'
 
-export interface UserProfileAttrInput extends Required<UserProfileModel> {}
+export interface UserProfileAttrInput extends Required<UserProfileEntity> {}
 
 export default class UserProfileModel extends Model<UserProfileEntity, UserProfileAttrInput> implements UserProfileEntity {
   declare fk_user: string

@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import testRouter from './test.router'
-import { UserAccountRouter } from './user_routes'
+import { AuthRouter } from './user_routes'
 
 export interface APIType {
   path: string
@@ -10,6 +10,6 @@ export interface APIType {
 export default function api (): APIType[] {
   return [
     { path: '/test', controller: testRouter },
-    { path: '/user', controller: UserAccountRouter }
+    { path: '/auth', controller: AuthRouter }
   ]
 }
