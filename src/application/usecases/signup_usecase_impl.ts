@@ -1,12 +1,12 @@
 import { SignupRepositoryInputModel, SignupRequestModel, SignupResponseModel } from '@domain/models/auth/useraccount-model'
 import { UserSignupUseCase } from '@domain/usecases/signup_usecase'
-import { SignupRepositoryPort } from '@domain/repositories/useraccount/signup_repository'
+import { CreateUserRepositoryPort } from '@domain/repositories/useraccount/create_user_repository'
 import { PasswordHasher } from '@application/ports/security/password'
 import { UserAccountStatusMap } from '@domain/models/maps/useraccount_status_model'
 
 export class UserSignupUseCaseImpl implements UserSignupUseCase {
   constructor (
-    private readonly port: SignupRepositoryPort,
+    private readonly port: CreateUserRepositoryPort,
     private readonly hasher: PasswordHasher
   ) {}
 
@@ -18,6 +18,6 @@ export class UserSignupUseCaseImpl implements UserSignupUseCase {
       phoneNumber: request.phoneNumber,
       userAccountStatusId: UserAccountStatusMap.unverifiableIdentity
     }
-    return await this.port.signup(data)
+    return await this.port.create(data)
   }
 }

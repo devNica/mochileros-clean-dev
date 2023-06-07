@@ -1,13 +1,13 @@
 import { SigninRequestModel, SigninResponseModel } from '@domain/models/auth/useraccount-model'
-import { SigninRepositoryPort } from '@domain/repositories/useraccount/signin_repository'
+import { findUserByEmailPort } from '@domain/repositories/useraccount/find_user_by_email_repository'
 import { UserSigninUseCase } from '@domain/usecases/signin_usecase'
 
 export class UserSigninUseCaseImpl implements UserSigninUseCase {
   constructor (
-    private readonly port: SigninRepositoryPort
+    private readonly port: findUserByEmailPort
   ) {}
 
-  async userSignin (userData: SigninRequestModel): Promise<SigninResponseModel> {
-    return await this.port.signin(userData)
+  async signin (userData: SigninRequestModel): Promise<SigninResponseModel | null> {
+    return await this.port.findUserByEmail(userData.email)
   }
 }

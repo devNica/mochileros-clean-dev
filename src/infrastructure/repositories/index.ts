@@ -1,10 +1,13 @@
-import { SignupRepositoryPort } from '@domain/repositories/useraccount/signup_repository'
-import { AuthRepositoryImpl } from './useraccount_repository'
+import { CreateUserRepositoryPort } from '@domain/repositories/useraccount/create_user_repository'
+import { UserRepositoryImpl } from './useraccount_repository'
+import { FindUserByEmailPort } from '@domain/repositories/useraccount/find_user_by_email_repository'
 
-const authRepositoryImpl = new AuthRepositoryImpl()
+const userRepositoryImpl = new UserRepositoryImpl()
 
-const signupRepositoryPort: SignupRepositoryPort = authRepositoryImpl
+const createUserRepositoryPort: CreateUserRepositoryPort = userRepositoryImpl
+const findUserByEmailPort: FindUserByEmailPort = userRepositoryImpl
 
 export {
-  signupRepositoryPort
+  createUserRepositoryPort,
+  findUserByEmailPort
 }

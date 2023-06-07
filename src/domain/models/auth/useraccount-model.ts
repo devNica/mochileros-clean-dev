@@ -34,8 +34,9 @@ export type AddPersonalInfoRequestModel = PersonalInfoModel
 
 export interface UpdatePersonalInfoRequestModel extends Omit<PersonalInfoModel, 'userId' | 'dni'> {}
 
-export interface SigninRequestModel extends Omit<UserAccountModel, 'userId' | 'phoneNumber' | 'isActive'> {}
+export interface SigninRequestModel extends Omit<UserAccountModel, 'userId' | 'phoneNumber' | 'accountStatus'> {}
 
-export interface SigninResponseModel extends UserAccountModel {
-  info: Omit<PersonalInfoModel, 'userId'>
+export interface SigninResponseModel extends Omit<UserAccountModel, 'accountStatus'> {
+  fkStatus: number
+  // info: Omit<PersonalInfoModel, 'userId'>
 }

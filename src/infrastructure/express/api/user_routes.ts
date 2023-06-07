@@ -9,8 +9,11 @@ import { Router } from 'express'
 export const UserAccountRouter = Router()
 
 // controllers
-const { signupController } = UserAccountControllerFactory()
+const { signupController, signinController } = UserAccountControllerFactory()
 
 UserAccountRouter.post('/signup',
   expressMiddlewareAdapter(RequestValidationMiddlewareFactory(signupSchema)),
   expressRouteAdapter(signupController))
+
+UserAccountRouter.post('/signin',
+  expressRouteAdapter(signinController))
