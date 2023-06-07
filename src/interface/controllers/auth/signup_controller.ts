@@ -6,6 +6,7 @@ import { HttpResponseHandler, ResponseModel } from '@application/ports/http/http
 import { SignupRequestModel, SignupResponseModel } from '@domain/models/auth/useraccount-model'
 import { UserSignupUseCase } from '@domain/usecases/signup_usecase'
 import { WinstonLoggerAdapter } from '@infrastructure/adapters/logger_adapter'
+import { objectKeyExists } from '@shared/helpers/objects/object_key_exists'
 
 export class SignupController implements Controller<{} | never> {
   constructor (
@@ -17,19 +18,17 @@ export class SignupController implements Controller<{} | never> {
   }
 
   async handleRequest (request: HttpRequestModel<SignupRequestModel>): Promise<ResponseModel<SignupResponseModel>> {
-    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-    if (request === undefined || !request?.body) {
-      throw RequestValidationError.notify('Invalid Request')
-    }
-
     try {
+      if (!objectKeyExists(request, 'body')) {
+        throw RequestValidationError.notify('Invalid Request')
+      }
+
       const { email, password, phoneNumber } = request.body
 
       const user = await this.userSignupUC.userSignup({
         email,
         password,
-        phoneNumber,
-        accountStatus: 'unverifiableIdentity'
+        phoneNumber
       })
 
       this.logger.LogInfo('User register successfull')

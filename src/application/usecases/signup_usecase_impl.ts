@@ -16,7 +16,7 @@ export class UserSignupUseCaseImpl implements UserSignupUseCase {
       email: request.email,
       passwordHashed: await this.hasher.hashPassword(request.password),
       phoneNumber: request.phoneNumber,
-      userAccountStatusId: UserAccountStatusMap[`${request.accountStatus}`]
+      userAccountStatusId: UserAccountStatusMap.unverifiableIdentity
     }
     return await this.port.signup(data)
   }

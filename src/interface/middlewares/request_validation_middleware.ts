@@ -1,7 +1,8 @@
 import { RequestValidationError } from '@application/ports/error/request_validation_error'
 import { HttpRequestModel } from '@application/ports/http/http-requets'
 import { MiddlewareHandler, MiddlewareRequestModel } from '@application/ports/middleware/http_middleware'
-import { JoiSchemaHandler, schemaModel, validationResultModel } from '@application/ports/validation/joi_validation'
+import { JoiErrorDetailsModel, JoiSchemaHandler, schemaModel, validationResultModel } from '@application/ports/validation/joi_validation'
+import { serializeErrorStack } from '@shared/helpers/serializers/serialize_error_stack'
 
 export class RequestValidationMiddleware<T> implements MiddlewareHandler, JoiSchemaHandler {
   constructor (
@@ -12,8 +13,8 @@ export class RequestValidationMiddleware<T> implements MiddlewareHandler, JoiSch
     try {
       await this.validate(this.joiSchema, request)
     } catch (error: any) {
-      const { message } = error.details[0]
-      throw RequestValidationError.notify(message)
+      const details: JoiErrorDetailsModel[] = error.details
+      throw RequestValidationError.notify(serializeErrorStack(details))
     }
   }
 

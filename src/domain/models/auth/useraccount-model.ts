@@ -8,7 +8,7 @@ export interface UserAccountModel {
   accountStatus: keyof typeof UserAccountStatusMap
 }
 
-export interface SignupRequestModel extends Omit<UserAccountModel, 'userId' | 'isActive'> {}
+export interface SignupRequestModel extends Omit<UserAccountModel, 'userId' | 'accountStatus'> {}
 
 export interface SignupRepositoryInputModel extends Omit<UserAccountModel, 'userId' | 'password' | 'accountStatus' > {
   passwordHashed: string
