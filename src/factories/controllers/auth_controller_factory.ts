@@ -8,6 +8,7 @@ import { SigninController } from '@interface/controllers/auth/signin_controller'
 import { CustomerSignupController } from '@interface/controllers/auth/customer_signup_controller'
 import { CreatedResponsePresenter } from '@interface/responses/created_response_presenter'
 import { SuccessResponsePresenter } from '@interface/responses/success_response_presenter'
+import { jwtTokenAdapter } from '@infrastructure/adapters/jwt_adapter'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const UserAccountControllerFactory = () => {
@@ -18,6 +19,7 @@ export const UserAccountControllerFactory = () => {
 
   const signinUseCase = new UserSigninUseCaseImpl(
     findUserByEmailPort,
+    jwtTokenAdapter,
     new ArgonPasswordAdapter()
   )
 

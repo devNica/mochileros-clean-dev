@@ -10,6 +10,10 @@ declare global {
       DB_HOST: string
       DB_DIALECT: 'mysql' | 'postgres'
       SEQUELIZE_CONFIG_ALTER: true | false
+      JWT_SECRET: string
+      JWT_SECRET_REFRESH: string
+      JWT_SECRET_EXPIRATION_SECS: number
+      JWT_SECRET_REFRESH_EXPIRATION_SECS: number
     }
   }
 }

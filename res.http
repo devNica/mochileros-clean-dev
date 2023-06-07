@@ -9,10 +9,10 @@ Content-Type: application/json
 }
 
 ### signin
-POST http://localhost:8900/user/signin HTTP/1.1
+POST http://localhost:8900/auth/signin HTTP/1.1
 Content-Type: application/json
 
 {
     "email": "devnica@gmail.com",
-    "passwords": "Lamisma123*"
+    "password": "Lamisma123*"
 }
