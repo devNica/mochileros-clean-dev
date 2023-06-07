@@ -15,3 +15,15 @@ export const signupSchema: Joi.ObjectSchema = Joi.object({
     'string.base': 'Format phone number is wrong'
   })
 })
+
+export const signinSchema: Joi.ObjectSchema = Joi.object({
+  email: Joi.string().email().required().messages({
+    'any.required': 'Email is required',
+    'string.base': 'Format email is wrong!',
+    'string.email': 'Email address is wrong!'
+  }),
+  password: Joi.string().required().messages({
+    'any.required': 'Password is required!',
+    'string.base': 'Format password is wrong!'
+  })
+})

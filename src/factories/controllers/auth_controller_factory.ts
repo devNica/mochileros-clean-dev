@@ -17,7 +17,8 @@ export const UserAccountControllerFactory = () => {
   )
 
   const signinUseCase = new UserSigninUseCaseImpl(
-    findUserByEmailPort
+    findUserByEmailPort,
+    new ArgonPasswordAdapter()
   )
 
   const signupPresenter = new CreatedResponsePresenter<SignupResponseModel>()

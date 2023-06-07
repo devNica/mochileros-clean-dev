@@ -1,11 +1,11 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { SigninResponseModel, SignupRepositoryInputModel, SignupRepositoryOutputModel } from '@domain/models/auth/useraccount-model'
 import { FindUserByEmailPort } from '@domain/repositories/useraccount/find_user_by_email_repository'
 import { CreateUserRepositoryPort } from '@domain/repositories/useraccount/create_user_repository'
-import PersonalInfoModel from '@infrastructure/sequelize/models/personal_info_model'
 import UserAccountModel from '@infrastructure/sequelize/models/user_account_model'
 
 export class UserRepositoryImpl implements CreateUserRepositoryPort, FindUserByEmailPort {
-  async create (data: SignupRepositoryInputModel): Promise<SignupRepositoryOutputModel> {
+  async create (data: SignupRepositoryInputModel): Promise<SignupRepositoryOutputModel | null> {
     const { email, passwordHashed, phoneNumber, userAccountStatusId } = data
     const user = await UserAccountModel.create({
       email,
@@ -14,13 +14,13 @@ export class UserRepositoryImpl implements CreateUserRepositoryPort, FindUserByE
       isRoot: false,
       fk_status: userAccountStatusId
     })
+    if (!user) return null
     return { userId: user.id, createdAt: user.createdAt }
   }
 
   async findUserByEmail (email: string): Promise<SigninResponseModel | null> {
     const user = await UserAccountModel.findOne({
-      where: { email },
-      include: { model: PersonalInfoModel }
+      where: { email }
     })
 
     // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions

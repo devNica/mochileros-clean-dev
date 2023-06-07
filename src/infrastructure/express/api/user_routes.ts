@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import { signupSchema } from '@application/validations/auth_schema'
+import { signinSchema, signupSchema } from '@application/validations/auth_schema'
 import { UserAccountControllerFactory } from '@factories/controllers/auth_controller_factory'
 import { RequestValidationMiddlewareFactory } from '@factories/middlewares/validation_middleware_factory'
 import { expressMiddlewareAdapter } from '@infrastructure/adapters/express_middleware_adapter'
@@ -16,4 +16,5 @@ UserAccountRouter.post('/signup',
   expressRouteAdapter(signupController))
 
 UserAccountRouter.post('/signin',
+  expressMiddlewareAdapter(RequestValidationMiddlewareFactory(signinSchema)),
   expressRouteAdapter(signinController))

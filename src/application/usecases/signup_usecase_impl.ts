@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { SignupRepositoryInputModel, SignupRequestModel, SignupResponseModel } from '@domain/models/auth/useraccount-model'
 import { UserSignupUseCase } from '@domain/usecases/signup_usecase'
 import { CreateUserRepositoryPort } from '@domain/repositories/useraccount/create_user_repository'
@@ -10,7 +11,7 @@ export class UserSignupUseCaseImpl implements UserSignupUseCase {
     private readonly hasher: PasswordHasher
   ) {}
 
-  async userSignup (request: SignupRequestModel): Promise<SignupResponseModel> {
+  async userSignup (request: SignupRequestModel): Promise<SignupResponseModel> | never {
     /** prepare input data to the repository */
     const data: SignupRepositoryInputModel = {
       email: request.email,
@@ -18,6 +19,12 @@ export class UserSignupUseCaseImpl implements UserSignupUseCase {
       phoneNumber: request.phoneNumber,
       userAccountStatusId: UserAccountStatusMap.unverifiableIdentity
     }
-    return await this.port.create(data)
+    return await this.userCreate(data)
+  }
+
+  private async userCreate (data: SignupRepositoryInputModel): Promise<SignupResponseModel | never> {
+    const user = await this.port.create(data)
+    if (!user) throw new Error('user registration failed')
+    return user
   }
 }
