@@ -16,8 +16,12 @@ export const HttpStatusMap: Record<HttpStatusResponse, number> = {
 }
 
 export interface ResponseModel<T> {
-  body: T
+  type: HttpStatusResponse
   message: string
+  body: T
+}
+
+export interface HttpResponseAdapterModel<T> extends ResponseModel<T> {
   code: number
 }
 

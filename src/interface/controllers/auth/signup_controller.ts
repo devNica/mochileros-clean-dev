@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { Controller } from '@application/ports/controller/controller'
+import { RequestValidationError } from '@application/ports/error/request_validation_error'
 import { HttpRequestModel } from '@application/ports/http/http-requets'
 import { HttpResponseHandler, ResponseModel } from '@application/ports/http/http-response'
 import { SignupRequestModel, SignupResponseModel } from '@domain/models/auth/useraccount-model'
@@ -16,23 +17,26 @@ export class SignupController implements Controller<{} | never> {
   }
 
   async handleRequest (request: HttpRequestModel<SignupRequestModel>): Promise<ResponseModel<SignupResponseModel>> {
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    if (request === undefined || !request?.body) {
+      throw RequestValidationError.notify('Invalid Request')
+    }
+
     try {
-      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-      if (request === undefined || !request?.body) {
-        throw new Error('Invalid Request')
-      }
       const { email, password, phoneNumber } = request.body
 
-      const user = await this.userSignupUC.userSignup({ email, password, phoneNumber, accountStatus: 'unverifiableIdentity' })
+      const user = await this.userSignupUC.userSignup({
+        email,
+        password,
+        phoneNumber,
+        accountStatus: 'unverifiableIdentity'
+      })
 
       this.logger.LogInfo('User register successfull')
 
-      const response = await this.presenter.response({ ...user }, 'User register successfull')
-
-      return response
+      return await this.presenter.response({ ...user }, 'User register successfull')
     } catch (error) {
-      this.logger.LogError(`Error: ${error}`)
-      throw new Error(String(error))
+      throw RequestValidationError.notify(String(error))
     }
   }
 }

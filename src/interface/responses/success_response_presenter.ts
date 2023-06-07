@@ -1,11 +1,11 @@
-import { HttpResponseHandler, HttpStatusMap, ResponseModel } from '@application/ports/http/http-response'
+import { HttpResponseHandler, ResponseModel } from '@application/ports/http/http-response'
 
 export class SuccessResponsePresenter<T> implements HttpResponseHandler<T> {
   async response (body: T, message: string): Promise<ResponseModel<T>> {
     return {
+      type: 'successRequest',
       body,
-      message,
-      code: HttpStatusMap.successRequest
+      message
     }
   }
 }
