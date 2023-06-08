@@ -9,6 +9,7 @@ import { CustomerSignupController } from '@interface/controllers/auth/customer_s
 import { CreatedResponsePresenter } from '@interface/responses/created_response_presenter'
 import { SuccessResponsePresenter } from '@interface/responses/success_response_presenter'
 import { jwtTokenAdapter } from '@infrastructure/adapters/jwt_adapter'
+import { redisCacheService } from '@application/service/redis_service'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const UserAccountControllerFactory = () => {
@@ -20,7 +21,8 @@ export const UserAccountControllerFactory = () => {
   const signinUseCase = new UserSigninUseCaseImpl(
     findUserByEmailPort,
     jwtTokenAdapter,
-    new ArgonPasswordAdapter()
+    new ArgonPasswordAdapter(),
+    redisCacheService
   )
 
   const customerSignupPresenter = new CreatedResponsePresenter<SignupResponseModel>()

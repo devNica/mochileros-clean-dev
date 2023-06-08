@@ -14,6 +14,9 @@ declare global {
       JWT_SECRET_REFRESH: string
       JWT_SECRET_EXPIRATION_SECS: number
       JWT_SECRET_REFRESH_EXPIRATION_SECS: number
+      REDIS_PASSWORD: string
+      REDIS_HOST: string
+      REDIS_PORT: number
     }
   }
 }
