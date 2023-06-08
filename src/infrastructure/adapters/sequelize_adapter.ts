@@ -5,6 +5,7 @@ import CountryInfoModel from '@infrastructure/sequelize/models/country_info_mode
 import PersonalInfoModel from '@infrastructure/sequelize/models/personal_info_model'
 import ProfileModel from '@infrastructure/sequelize/models/profile_model'
 import UserAccountModel from '@infrastructure/sequelize/models/user_account_model'
+import UserProfileModel from '@infrastructure/sequelize/models/user_profile_model'
 import { Sequelize } from 'sequelize'
 
 export class SequelizeDatabaseAdapter implements DatabaseAdapterModel {
@@ -37,11 +38,16 @@ export class SequelizeDatabaseAdapter implements DatabaseAdapterModel {
 
       /** PROFILE MODEL */
       ProfileModel.belongsToMany(UserAccountModel, { through: 'user_profile', foreignKey: 'fk_profile' })
+      ProfileModel.hasMany(UserProfileModel, { foreignKey: 'fk_profile', onUpdate: 'CASCADE', onDelete: 'RESTRICT' })
 
       /** USERMODEL */
       UserAccountModel.hasMany(PersonalInfoModel, { foreignKey: 'fk_user', onUpdate: 'CASCADE', onDelete: 'RESTRICT' })
       UserAccountModel.belongsTo(AccountStatusModel, { foreignKey: 'fk_status' })
-      UserAccountModel.belongsToMany(ProfileModel, { through: 'user_profile', foreignKey: 'fk_user' })
+      UserAccountModel.belongsToMany(ProfileModel, { through: 'user_profile', foreignKey: 'fk_user', as: 'userHasProfile' })
+      UserAccountModel.hasMany(UserProfileModel, { foreignKey: 'fk_user', onUpdate: 'CASCADE', onDelete: 'RESTRICT' })
+
+      UserProfileModel.belongsTo(UserAccountModel, { foreignKey: 'fk_user' })
+      UserProfileModel.belongsTo(ProfileModel, { foreignKey: 'fk_profile' })
 
       await this.sequelize.sync({ alter })
     } catch (error) {

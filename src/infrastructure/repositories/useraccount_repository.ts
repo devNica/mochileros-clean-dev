@@ -5,6 +5,7 @@ import { CreateCustomerRepositoryPort } from '@domain/repositories/useraccount/c
 import UserAccountModel from '@infrastructure/sequelize/models/user_account_model'
 import sequelizeInstance from '@infrastructure/configs/sequelize_config'
 import UserProfileModel from '@infrastructure/sequelize/models/user_profile_model'
+import { serializeResponseORM } from '@shared/helpers/objects/serialize_response_orm'
 
 export class UserRepositoryImpl implements CreateCustomerRepositoryPort, FindUserByEmailPort {
   async create (data: SignupRepositoryInputModel): Promise<SignupRepositoryOutputModel | null> {
@@ -38,6 +39,8 @@ export class UserRepositoryImpl implements CreateCustomerRepositoryPort, FindUse
     const user = await UserAccountModel.findOne({
       where: { email }
     })
+
+    console.log(serializeResponseORM(user))
 
     // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (!user) return null
