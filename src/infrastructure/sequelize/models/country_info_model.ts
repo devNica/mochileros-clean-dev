@@ -1,8 +1,8 @@
-import { DataTypes, Model } from 'sequelize'
+import { DataTypes, Model, Optional } from 'sequelize'
 import { CountryInfoEntity } from '../entities/country_info_entity'
 import sequelizeInstance from '@infrastructure/configs/sequelize_config'
 
-export interface CountryInfoAttrInput extends Required<CountryInfoEntity> {}
+export interface CountryInfoAttrInput extends Optional<CountryInfoEntity, 'id'> {}
 
 export default class CountryInfoModel extends Model<CountryInfoEntity, CountryInfoAttrInput> implements CountryInfoEntity {
   declare id: number
@@ -10,8 +10,8 @@ export default class CountryInfoModel extends Model<CountryInfoEntity, CountryIn
   declare capital: string
   declare cca3: string
   declare callingcode: string
-  declare timezones: string
-  declare states: string
+  declare timezones: []
+  declare states: []
   declare latitude: string
   declare longitude: string
   declare flagpng: string

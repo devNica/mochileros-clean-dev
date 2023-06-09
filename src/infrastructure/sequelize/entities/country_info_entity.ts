@@ -5,8 +5,8 @@ export interface CountryInfoEntity {
   capital: string
   cca3: string
   callingcode: string
-  timezones: string
-  states: string
+  timezones: []
+  states: []
   latitude: string
   longitude: string
   flagpng: string

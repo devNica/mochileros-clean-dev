@@ -3,7 +3,7 @@ import { CustomerSignupUseCaseImpl } from '@application/usecases/customer_signup
 import { SigninResponseModel, SignupResponseModel } from '@domain/models/auth/useraccount-model'
 import { ArgonPasswordAdapter } from '@infrastructure/adapters/argon_password_adapter'
 import { WinstonLoggerAdapter } from '@infrastructure/adapters/logger_adapter'
-import { createUserRepositoryPort, findUserByEmailPort } from '@infrastructure/repositories'
+import { createUserRepositoryPort, findUserByEmailPort } from '@infrastructure/repositories/useraccount'
 import { SigninController } from '@interface/controllers/auth/signin_controller'
 import { CustomerSignupController } from '@interface/controllers/auth/customer_signup_controller'
 import { CreatedResponsePresenter } from '@interface/responses/created_response_presenter'

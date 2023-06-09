@@ -5,7 +5,7 @@ import { CreateCustomerRepositoryPort } from '@domain/repositories/useraccount/c
 import UserAccountModel from '@infrastructure/sequelize/models/user_account_model'
 import sequelizeInstance from '@infrastructure/configs/sequelize_config'
 import UserProfileModel from '@infrastructure/sequelize/models/user_profile_model'
-import { fetchUserAccountByEmail } from './queries/user_query'
+import { fetchUserAccountByEmail } from '../queries/user_query'
 import { QueryTypes } from 'sequelize'
 
 export class UserRepositoryImpl implements CreateCustomerRepositoryPort, FindUserByEmailPort {
