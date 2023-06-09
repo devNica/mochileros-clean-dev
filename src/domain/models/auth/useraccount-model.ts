@@ -37,7 +37,18 @@ export interface UpdatePersonalInfoRequestModel extends Omit<PersonalInfoModel, 
 
 export interface SigninRequestModel extends Omit<UserAccountModel, 'userId' | 'phoneNumber' | 'accountStatus'> {}
 
-export interface SigninResponseModel extends Omit<UserAccountModel, 'accountStatus'> {
-  fkStatus: number
-  // info: Omit<PersonalInfoModel, 'userId'>
+export interface SigninRepositoryOutputModel {
+  userId: string
+  email: string
+  passwordHashed: string
+  phoneNumber: string
+  isRoot: boolean
+  rol: string
+  status: string
+  createdAt: Date
+  updatedAt?: Date
+}
+
+export interface SigninResponseModel extends Omit<SigninRepositoryOutputModel, 'passwordHashed' | 'isRoot'> {
+  token: string
 }

@@ -1,6 +1,6 @@
 export interface TokenModel {
   user_id: string
-  profile: string
+  rol: string
   token: string
   expires_in: string
 }
@@ -12,4 +12,4 @@ export interface SignedToken {
   expirationDate: Date
 }
 
-export interface TokenResponseModel extends Omit<TokenModel, 'user_id' | 'profile' | 'expires_in'> {}
+export interface TokenResponseModel extends Omit<TokenModel, 'user_id' | 'rol' | 'expires_in'> {}
