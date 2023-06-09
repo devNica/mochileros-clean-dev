@@ -17,6 +17,7 @@ declare global {
       REDIS_PASSWORD: string
       REDIS_HOST: string
       REDIS_PORT: number
+      COUNTRY_API: string
     }
   }
 }
