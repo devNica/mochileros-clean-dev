@@ -1,4 +1,4 @@
-import { MigrateCountryInfoUseCaseImp } from '@application/usecases/migrate_country_info_usecase_impl'
+import { MigrateCountryInfoUseCaseImp } from '@application/usecases/props/migrate_country_info_usecase_impl'
 import { ExternalApiAdapter } from '@infrastructure/adapters/external_api_adapter'
 import { migrateCountryInfoRepositoryPort } from '@infrastructure/repositories/props'
 import { MigrateCountryInfoController } from '@interface/controllers/props/migrate_country_info_controller'

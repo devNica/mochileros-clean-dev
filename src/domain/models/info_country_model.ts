@@ -16,3 +16,14 @@ export interface CountryInfoRequestModel extends CountryV3Model {
   latitude: string
   longitude: string
 }
+
+export interface ShortCountryInfoRepositoryOutputModel {
+  id: number
+  name: string
+  cca3: string
+  callingcode: string
+  flagpng: string
+  flagsvg: string
+}
+
+export type ShortCountryInfoResponseModel = ShortCountryInfoRepositoryOutputModel[]
