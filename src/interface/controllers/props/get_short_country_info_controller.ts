@@ -8,7 +8,7 @@ import { GetShortCountryInfoUseCase } from '@domain/usecases/get_short_country_i
 export class GetShortCountryInfoController implements Controller <ShortCountryInfoResponseModel | never> {
   constructor (
     private readonly uc: GetShortCountryInfoUseCase,
-    private readonly presenter: HttpResponseHandler<ShortCountryInfoResponseModel[]>
+    private readonly presenter: HttpResponseHandler<ShortCountryInfoResponseModel>
   ) {}
 
   async handleRequest (_request: HttpRequestModel):

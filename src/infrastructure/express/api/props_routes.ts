@@ -3,8 +3,9 @@ import { PropsControllerFactory } from '@factories/controllers/props_controller_
 import { expressRouteAdapter } from '@infrastructure/adapters/express_route_adapter'
 import { Router } from 'express'
 
-const { migrateCountryInfoController } = PropsControllerFactory()
+const { migrateCountryInfoController, fetchShortCountryInfoController } = PropsControllerFactory()
 
 export const PropsRouter = Router()
 
 PropsRouter.get('/', expressRouteAdapter(migrateCountryInfoController))
+PropsRouter.get('/country', expressRouteAdapter(fetchShortCountryInfoController))
