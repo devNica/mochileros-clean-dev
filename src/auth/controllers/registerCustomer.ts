@@ -3,21 +3,21 @@ import { Controller } from '@application/ports/controller/controller'
 import { RequestValidationError } from '@application/ports/error/request_validation_error'
 import { HttpRequestModel } from '@application/ports/http/http-requets'
 import { HttpResponseHandler, ResponseModel } from '@application/ports/http/http-response'
-import { SignupRequestModel, SignupResponseModel } from '@domain/models/auth/useraccount-model'
-import { CustomerSignupUseCase } from '@domain/usecases/customer_signup_usecase'
+import { RegisterCustomerRequestModel, RegisterCustomerResponseModel } from '@auth/domain/models/useraccount'
+import { RegisterCustomerUseCase } from '@auth/domain/usecase/registerCustomerUseCase'
 import { WinstonLoggerAdapter } from '@infrastructure/adapters/logger_adapter'
 import { objectKeyExists } from '@shared/helpers/objects/object_key_exists'
 
-export class CustomerSignupController implements Controller<{} | never> {
+export class RegisterCustomerController implements Controller<RegisterCustomerResponseModel | never> {
   constructor (
-    private readonly customerSignupUC: CustomerSignupUseCase,
-    private readonly presenter: HttpResponseHandler<SignupResponseModel>,
+    private readonly uc: RegisterCustomerUseCase,
+    private readonly presenter: HttpResponseHandler<RegisterCustomerResponseModel>,
     private readonly logger: WinstonLoggerAdapter
   ) {
     this.logger = new WinstonLoggerAdapter()
   }
 
-  async handleRequest (request: HttpRequestModel<SignupRequestModel>): Promise<ResponseModel<SignupResponseModel>> {
+  async handleRequest (request: HttpRequestModel<RegisterCustomerRequestModel>): Promise<ResponseModel<RegisterCustomerResponseModel>> | never {
     try {
       if (!objectKeyExists(request, 'body')) {
         throw RequestValidationError.notify('Invalid Request')
@@ -25,7 +25,7 @@ export class CustomerSignupController implements Controller<{} | never> {
 
       const { email, password, phoneNumber } = request.body
 
-      const user = await this.customerSignupUC.customerSignup({
+      const newUser = await this.uc.registerCustomer({
         email,
         password,
         phoneNumber
@@ -33,7 +33,7 @@ export class CustomerSignupController implements Controller<{} | never> {
 
       this.logger.LogInfo('User register successfull')
 
-      return await this.presenter.response({ ...user }, 'User register successfull')
+      return await this.presenter.response({ ...newUser }, 'User register successfull')
     } catch (error) {
       throw RequestValidationError.notify(String(error))
     }
