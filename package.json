@@ -47,7 +47,7 @@
   },
   "_moduleAliases": {
     "@auth": "src/auth",
-    "@routes": "src/routes",
+    "@internal-props": "src/internal-props",
     "@infrastructure": "src/infrastructure",
     "@interface": "src/interface",
     "@application": "src/application",

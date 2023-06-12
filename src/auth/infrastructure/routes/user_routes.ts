@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import { signinSchema, signupSchema } from '@application/validations/auth_schema'
-import { UserAccountControllerFactory } from '@auth/factories/auth_controller_factory'
-import { RequestValidationMiddlewareFactory } from '@factories/middlewares/validation_middleware_factory'
+import { registerCustomerSchema, loginCustomerSchema } from '@auth/aplication/validations/authSchema'
+import { UserAccountControllerFactory } from '@auth/factories/authControllerFactory'
+import { RequestValidationMiddlewareFactory } from '@auth/factories/validationMiddlewareMiddleware'
 import { expressMiddlewareAdapter } from '@infrastructure/adapters/express_middleware_adapter'
 import { expressRouteAdapter } from '@infrastructure/adapters/express_route_adapter'
 import { Router } from 'express'
@@ -9,12 +9,12 @@ import { Router } from 'express'
 export const AuthRouter = Router()
 
 // controllers
-const { customerSignupController, signinController } = UserAccountControllerFactory()
+const { registerCustomerController, loginCustomerController } = UserAccountControllerFactory()
 
 AuthRouter.post('/customer',
-  expressMiddlewareAdapter(RequestValidationMiddlewareFactory(signupSchema)),
-  expressRouteAdapter(customerSignupController))
+  expressMiddlewareAdapter(RequestValidationMiddlewareFactory(registerCustomerSchema)),
+  expressRouteAdapter(registerCustomerController))
 
-AuthRouter.post('/signin',
-  expressMiddlewareAdapter(RequestValidationMiddlewareFactory(signinSchema)),
-  expressRouteAdapter(signinController))
+AuthRouter.post('/login-customer',
+  expressMiddlewareAdapter(RequestValidationMiddlewareFactory(loginCustomerSchema)),
+  expressRouteAdapter(loginCustomerController))

@@ -1,5 +1,5 @@
 import { Application } from 'express'
-import { APIType } from '../api'
+import { APIType } from '../routes'
 import { HttpResponseAdapter } from '@infrastructure/adapters/express_route_adapter'
 
 export const setupRoutes = (app: Application, api: APIType[]): void => {

@@ -4,7 +4,7 @@ import { RequestValidationError } from '@application/ports/error/request_validat
 import { HttpRequestModel } from '@application/ports/http/http-requets'
 import { HttpResponseHandler, ResponseModel } from '@application/ports/http/http-response'
 import { RegisterCustomerRequestModel, RegisterCustomerResponseModel } from '@auth/domain/models/useraccount'
-import { RegisterCustomerUseCase } from '@auth/domain/usecase/registerCustomerUseCase'
+import { RegisterCustomerUseCase } from '@auth/domain/usecase/registerCustomer'
 import { WinstonLoggerAdapter } from '@infrastructure/adapters/logger_adapter'
 import { objectKeyExists } from '@shared/helpers/objects/object_key_exists'
 

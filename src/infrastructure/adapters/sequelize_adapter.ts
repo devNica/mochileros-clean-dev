@@ -1,11 +1,11 @@
 import { DatabaseAdapterModel } from '@application/ports/database/database'
 import sequelizeInstance from '@infrastructure/configs/sequelize_config'
-import AccountStatusModel from '@infrastructure/sequelize/models/account_status_model'
-import CountryInfoModel from '@infrastructure/sequelize/models/country_info_model'
-import PersonalInfoModel from '@infrastructure/sequelize/models/personal_info_model'
-import ProfileModel from '@infrastructure/sequelize/models/profile_model'
-import UserAccountModel from '@infrastructure/sequelize/models/user_account_model'
-import UserProfileModel from '@infrastructure/sequelize/models/user_profile_model'
+import AccountStatusModel from '@infrastructure/sequelize/models/AccountStatusModel'
+import CountryInfoModel from '@infrastructure/sequelize/models/CountryInfoModel'
+import PersonalInfoModel from '@infrastructure/sequelize/models/PersonalInfoModel'
+import ProfileModel from '@infrastructure/sequelize/models/ProfileModel'
+import UserAccountModel from '@infrastructure/sequelize/models/UserAccountModel'
+import UserProfileModel from '@infrastructure/sequelize/models/UserProfileModel'
 import { Sequelize } from 'sequelize'
 
 export class SequelizeDatabaseAdapter implements DatabaseAdapterModel {

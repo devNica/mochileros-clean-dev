@@ -4,7 +4,7 @@ import 'module-alias/register'
 
 import express from 'express'
 
-import api from './api'
+import api from './routes'
 import { setupGlobalMiddlewares } from './setup/setup-global-middlewares'
 import { setupRoutes } from './setup/setup-routes'
 import { setupProxy } from './setup/setup-proxy'

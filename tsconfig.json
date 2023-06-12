@@ -32,7 +32,7 @@
       "paths": {
         "*": ["types/*"],
         "@auth/*": ["auth/*"],
-        "@routes/*": ["routes/*"],
+        "@internal-props/*": ["internal-props/*"],
         "@infrastructure/*": ["infrastructure/*"],
         "@interface/*": ["interface/*"],
         "@application/*": ["application/*"],

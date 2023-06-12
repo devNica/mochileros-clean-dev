@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { ExternalApiAdpaterModel } from '@application/ports/api/external_api'
-import { CountryInfoRequestModel, CountryV3Model } from '@domain/models/info_country_model'
 import constants from '@shared/constants'
 import path from 'path'
 import fs from 'fs'
+import { CountryInfoRequestModel, CountryV3Model } from '@internal-props/domain/models/infoCountry'
 
 export class ExternalApiAdapter implements ExternalApiAdpaterModel {
   private readonly api: string

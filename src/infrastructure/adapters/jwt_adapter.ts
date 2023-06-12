@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
-import { JwtToken } from '@application/ports/security/jwt_token'
-import { TokenPayloadModel, SignedToken } from '@domain/models/token/token_model'
+import { JwtToken } from '@application/ports/security/jwtToken'
+import { SignedToken, TokenPayloadModel } from '@application/ports/security/tokenModel'
 import constants from '@shared/constants'
 import { createFutureDate } from '@shared/helpers/dates/create_future_date'
 import jwt from 'jsonwebtoken'
