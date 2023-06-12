@@ -1,6 +1,6 @@
 import { DataTypes, Model, Optional } from 'sequelize'
 import { CountryInfoEntity } from '../entities/CountryInfoEntity'
-import sequelizeInstance from '@infrastructure/configs/sequelize_config'
+import sequelizeInstance from '@infrastructure/sequelize/sequelizeConfig'
 
 export interface CountryInfoAttrInput extends Optional<CountryInfoEntity, 'id'> {}
 

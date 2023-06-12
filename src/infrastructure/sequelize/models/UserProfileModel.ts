@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize'
 import { UserProfileEntity } from '../entities/UserProfileEntity'
-import sequelizeInstance from '@infrastructure/configs/sequelize_config'
+import sequelizeInstance from '@infrastructure/sequelize/sequelizeConfig'
 
 export interface UserProfileAttrInput extends Required<UserProfileEntity> {}
 

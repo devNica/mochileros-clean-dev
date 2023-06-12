@@ -1,6 +1,6 @@
 import { DataTypes, Model, NOW, Optional } from 'sequelize'
 import { UserAccountEntity } from '../entities/UserAccountEntity'
-import sequelizeInstance from '@infrastructure/configs/sequelize_config'
+import sequelizeInstance from '@infrastructure/sequelize/sequelizeConfig'
 
 export interface UserAttrInput extends Optional<UserAccountEntity, 'id' | 'twoFactorAuth' | 'createdAt' | 'updatedAt'> {}
 export interface UserAttrOutput extends Required<UserAccountEntity> {}

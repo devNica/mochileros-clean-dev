@@ -1,9 +1,8 @@
-import RedisClient from '@infrastructure/configs/redis_config'
+import constants from '@shared/constants'
 import Redis from 'ioredis'
 
 export class RedisCacheAdapter {
-  constructor
-  (
+  constructor (
     private readonly redisClient: Redis
   ) {}
 
@@ -35,4 +34,10 @@ export class RedisCacheAdapter {
   }
 }
 
-export const redisCacheAdapter = new RedisCacheAdapter(RedisClient)
+const redisClient = new Redis({
+  host: constants.REDIS_HOST,
+  password: constants.REDIS_PASSWORD,
+  port: constants.REDIS_PORT
+})
+
+export const redisCacheAdapter = new RedisCacheAdapter(redisClient)

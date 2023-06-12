@@ -1,5 +1,5 @@
 import { DatabaseAdapterModel } from '@application/ports/database/database'
-import sequelizeInstance from '@infrastructure/configs/sequelize_config'
+import sequelizeInstance from '@infrastructure/sequelize/sequelizeConfig'
 import AccountStatusModel from '@infrastructure/sequelize/models/AccountStatusModel'
 import CountryInfoModel from '@infrastructure/sequelize/models/CountryInfoModel'
 import PersonalInfoModel from '@infrastructure/sequelize/models/PersonalInfoModel'

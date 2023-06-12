@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize'
 import { PersonalInfoEntity } from '../entities/PersonalInfoEntity'
-import sequelizeInstance from '@infrastructure/configs/sequelize_config'
+import sequelizeInstance from '@infrastructure/sequelize/sequelizeConfig'
 
 export interface PersonalInfoAttrInput extends Required<PersonalInfoEntity> {}
 

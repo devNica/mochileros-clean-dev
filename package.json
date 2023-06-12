@@ -8,7 +8,7 @@
     "tsc": "tsc",
     "start": "node build/server.js",
     "lint": "ts-standard --fix",
-    "dev": "ts-node-dev --files src/infrastructure/express/server.ts",
+    "dev": "ts-node-dev --files src/app.ts",
     "docker": "docker-compose up"
   },
   "keywords": [],
@@ -52,8 +52,7 @@
     "@interface": "src/interface",
     "@application": "src/application",
     "@shared": "src/shared",
-    "@domain": "src/domain",
-    "@factories": "src/factories"
+    "@domain": "src/domain"
   },
   "eslintConfig": {
     "parserOptions": {

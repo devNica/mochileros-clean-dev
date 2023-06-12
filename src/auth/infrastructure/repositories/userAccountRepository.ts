@@ -1,7 +1,7 @@
 import { LoginOutputModel, RegisterUserInputModel, RegisterUserOutputModel } from '@auth/domain/models/useraccount'
 import { CreateUserRepositoryPort } from '@auth/domain/repositories/createUserRepositoryPort'
 import { FindUserByEmailPort } from '@auth/domain/repositories/findUserByEmailPort'
-import sequelizeInstance from '@infrastructure/configs/sequelize_config'
+import sequelizeInstance from '@infrastructure/sequelize/sequelizeConfig'
 import UserAccountModel from '@infrastructure/sequelize/models/UserAccountModel'
 import UserProfileModel from '@infrastructure/sequelize/models/UserProfileModel'
 import { fetchUserAccountByEmail } from '../queries/user_query'
@@ -41,8 +41,6 @@ export class UserAccountRepositoryImpl implements CreateUserRepositoryPort, Find
       },
       type: QueryTypes.SELECT
     })
-
-    console.log(rows)
 
     // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (!rows) return null

@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize'
 import { AccountStatusEntity } from '../entities/AccountStatusEntity'
-import sequelizeInstance from '@infrastructure/configs/sequelize_config'
+import sequelizeInstance from '@infrastructure/sequelize/sequelizeConfig'
 
 export interface AccountStatusAttrInput extends Required<AccountStatusEntity> {}
 
