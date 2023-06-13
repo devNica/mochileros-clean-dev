@@ -1,14 +1,15 @@
-import { DataTypes, Model } from 'sequelize'
+import { DataTypes, Model, Optional } from 'sequelize'
 import { PersonalInfoEntity } from '../entities/PersonalInfoEntity'
 import sequelizeInstance from '@infrastructure/sequelize/sequelizeConfig'
 
-export interface PersonalInfoAttrInput extends Required<PersonalInfoEntity> {}
+export interface PersonalInfoAttrInput extends Optional<PersonalInfoEntity, 'id'> {}
 
 export default class PersonalInfoModel extends Model<PersonalInfoEntity, PersonalInfoAttrInput> implements PersonalInfoEntity {
   declare id: string
   declare firstname: string
   declare lastname: string
   declare dni: string
+  declare birthdate: string
   declare address: string
   declare fk_user: string
   declare fk_country: number
@@ -33,6 +34,10 @@ PersonalInfoModel.init({
     type: DataTypes.TEXT,
     allowNull: false,
     unique: true
+  },
+  birthdate: {
+    type: DataTypes.DATEONLY,
+    allowNull: false
   },
   address: {
     type: DataTypes.TEXT,
