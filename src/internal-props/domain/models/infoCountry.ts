@@ -19,7 +19,14 @@ export interface CountryInfoRequestModel extends CountryV3Model {
 
 export interface CountryInfoInputModel extends CountryInfoRequestModel {}
 
-export interface ShortCountryInfoRepositoryOutputModel {
+export interface MainCountryInfoRequestModel {
+  name?: string
+  cca3?: string
+}
+
+export interface MainCountryInfoInputModel extends MainCountryInfoRequestModel {}
+
+export interface MainCountryInfoOutputModel {
   id: number
   name: string
   cca3: string
@@ -28,4 +35,4 @@ export interface ShortCountryInfoRepositoryOutputModel {
   flagsvg: string
 }
 
-export type ShortCountryInfoResponseModel = ShortCountryInfoRepositoryOutputModel[]
+export interface MainCountryInfoResponseModel extends MainCountryInfoOutputModel {}

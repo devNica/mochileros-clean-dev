@@ -1,8 +1,10 @@
 import CountryInfoModel from '@infrastructure/sequelize/models/CountryInfoModel'
-import { CountryInfoInputModel } from '@internal-props/domain/models/infoCountry'
+import { CountryInfoInputModel, MainCountryInfoInputModel, MainCountryInfoOutputModel } from '@internal-props/domain/models/infoCountry'
+import { FindCountriesInfoByParametersPort } from '@internal-props/domain/repositories/findCountriesInfoByParametersPort'
 import { MigrateCountryRepositoryPort } from '@internal-props/domain/repositories/migrateCountryInfoPort'
+import { Op } from 'sequelize'
 
-export class CountryRepositoryImpl implements MigrateCountryRepositoryPort {
+export class CountryRepositoryImpl implements MigrateCountryRepositoryPort, FindCountriesInfoByParametersPort {
   async insertCountryInfo (requestData: CountryInfoInputModel[]): Promise<void> {
     try {
       await Promise.all(requestData.map(async (c) => {
@@ -25,5 +27,18 @@ export class CountryRepositoryImpl implements MigrateCountryRepositoryPort {
     } catch (error) {
       throw new Error(String(error))
     }
+  }
+
+  async findCountriesInfo (data: MainCountryInfoInputModel): Promise<MainCountryInfoOutputModel[]> {
+    const info = await CountryInfoModel.findAll({
+      where: {
+        [Op.or]: [
+          { name: { [Op.like]: `%${data.name ?? ''}%` } },
+          { cca3: { [Op.like]: `%${data.cca3 ?? ''}%` } }
+        ]
+      }
+    })
+
+    return info
   }
 }
