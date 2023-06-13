@@ -49,7 +49,9 @@ export class SequelizeDatabaseAdapter implements DatabaseAdapterModel {
       UserProfileModel.belongsTo(UserAccountModel, { foreignKey: 'fk_user' })
       UserProfileModel.belongsTo(ProfileModel, { foreignKey: 'fk_profile' })
 
-      await this.sequelize.sync({ alter })
+      if (alter) {
+        await this.sequelize.sync({ alter })
+      }
     } catch (error) {
       console.log(error)
       throw new Error(String(error))

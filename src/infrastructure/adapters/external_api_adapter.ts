@@ -25,8 +25,8 @@ export class ExternalApiAdapter implements ExternalApiAdpaterModel {
           capital: item.capital !== undefined ? item.capital[0] as string : '-' as string,
           cca3: item.cca3 !== undefined ? item.cca3 : '-' as string,
           callingcode: item.idd?.root ? `${item.idd.root}${item.idd.suffixes[0]}` : '-' as string,
-          flagpng: item.flagpng || '-' as string,
-          flagsvg: item.flagsvg || '-' as string,
+          flagpng: item.flags.png || '-' as string,
+          flagsvg: item.flags.svg || '-' as string,
           currcode: item?.currencies ? Object.keys(item.currencies)[0] : '-' as string,
           currname: item?.currencies ? Object.values(item.currencies[Object.keys(item.currencies)[0]])[0] as string || '-' : '-' as string,
           currsymbol: item?.currencies ? Object.values(item.currencies[Object.keys(item.currencies)[0]])[1] as string || '$' : '-' as string

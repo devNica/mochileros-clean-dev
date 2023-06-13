@@ -13,15 +13,11 @@ export class GetCountryInfoController implements Controller<MainCountryInfoRespo
   ) {}
 
   async handleRequest (request: HttpRequestModel<CountryInfoRequestModel>): Promise<ResponseModel<MainCountryInfoResponseModel[]>> {
-    try {
-      if (!objectKeyExists(request, 'query')) {
-        throw RequestValidationError.notify('Invalid Requets!')
-      }
-      const { name, cca3 } = request.query
-      const info = await this.uc.getCountriesInfo({ name, cca3 })
-      return await this.presenter.response(info, 'success')
-    } catch (error) {
+    if (!objectKeyExists(request, 'query')) {
       throw RequestValidationError.notify('Invalid Requets!')
     }
+    const { name, cca3 } = request.query
+    const info = await this.uc.getCountriesInfo({ name, cca3 })
+    return await this.presenter.response(info, 'success')
   }
 }

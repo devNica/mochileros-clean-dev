@@ -1,3 +1,4 @@
+import { RepositoryError } from '@application/ports/error/repositoryError'
 import CountryInfoModel from '@infrastructure/sequelize/models/CountryInfoModel'
 import { CountryInfoInputModel, MainCountryInfoInputModel, MainCountryInfoOutputModel } from '@internal-props/domain/models/infoCountry'
 import { FindCountriesInfoByParametersPort } from '@internal-props/domain/repositories/findCountriesInfoByParametersPort'
@@ -29,16 +30,22 @@ export class CountryRepositoryImpl implements MigrateCountryRepositoryPort, Find
     }
   }
 
-  async findCountriesInfo (data: MainCountryInfoInputModel): Promise<MainCountryInfoOutputModel[]> {
-    const info = await CountryInfoModel.findAll({
-      where: {
-        [Op.or]: [
-          { name: { [Op.like]: `%${data.name ?? ''}%` } },
-          { cca3: { [Op.like]: `%${data.cca3 ?? ''}%` } }
-        ]
-      }
-    })
+  async findCountriesInfo (data: MainCountryInfoInputModel): Promise<MainCountryInfoOutputModel[] | never> {
+    try {
+      const info = await CountryInfoModel.findAll({
+        where: {
+          [Op.or]: [
+            { name: { [Op.substring]: data.name ?? '-' } },
+            { cca3: { [Op.substring]: data.cca3 ?? '-' } }
+          ]
+        },
+        attributes: ['id', 'name', 'capital', 'cca3', 'callingcode', 'flagsvg', 'flagpng'],
+        limit: 10
+      })
 
-    return info
+      return info
+    } catch (error) {
+      throw RepositoryError.notify(String(error))
+    }
   }
 }
