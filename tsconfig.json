@@ -32,6 +32,7 @@
       "paths": {
         "*": ["types/*"],
         "@core/*": ["core/*"],
+        "@authupd/*": ["authupd/*"],
         "@auth/*": ["auth/*"],
         "@internal-props/*": ["internal-props/*"],
         "@infrastructure/*": ["infrastructure/*"],

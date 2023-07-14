@@ -47,6 +47,7 @@
   },
   "_moduleAliases": {
     "@core": "src/core",
+    "@authupd": "src/authupd",
     "@auth": "src/auth",
     "@internal-props": "src/internal-props",
     "@infrastructure": "src/infrastructure",
