@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { UserAccountStatusMap, UserProfileMap } from '@auth/domain/models/maps'
 import { UserRegisterDTOModel } from '@authupd/models/dto/useraccount_dto.model'
 import { UserRegisterRequestModel } from '@authupd/models/request/useraccount_req.model'
@@ -23,6 +24,9 @@ export class UserRegisterUsecase implements UserRegisterInputPort {
     }
 
     const user = await this.repository.createUser(newUSer)
+
+    if (!user) throw new Error('User registration failed')
+
     return {
       userId: user.userId,
       createdAt: user.createdAt
