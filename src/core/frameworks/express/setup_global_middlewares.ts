@@ -3,7 +3,7 @@ import morgan from 'morgan'
 import cors from 'cors'
 import helmet from 'helmet'
 
-export async function setupGlobalMiddleware (app: Application): Promise<void> {
+export async function setupGlobalMiddlewares (app: Application): Promise<void> {
   app.use(json())
   app.use(urlencoded({ extended: false }))
   app.use(cors({ origin: '*' }))
