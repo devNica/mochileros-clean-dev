@@ -46,6 +46,7 @@
     "winston": "3.9.0"
   },
   "_moduleAliases": {
+    "@core": "src/core",
     "@auth": "src/auth",
     "@internal-props": "src/internal-props",
     "@infrastructure": "src/infrastructure",
