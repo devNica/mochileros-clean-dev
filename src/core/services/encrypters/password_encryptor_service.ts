@@ -1,7 +1,7 @@
 import { PasswordEncryptorOutputPort } from '@core/ports/output/service/encryptors/password_encryptor_output.port'
 import argon from 'argon2'
 
-export class PasswordEncryptorService implements PasswordEncryptorOutputPort {
+class PasswordEncryptorService implements PasswordEncryptorOutputPort {
   async derivePassword (password: string): Promise<string> {
     return await argon.hash(password)
   }
@@ -10,3 +10,5 @@ export class PasswordEncryptorService implements PasswordEncryptorOutputPort {
     return await argon.verify(passwordHash, password)
   }
 }
+
+export const passwordEncryptorService = new PasswordEncryptorService()
