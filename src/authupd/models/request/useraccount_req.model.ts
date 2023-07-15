@@ -3,3 +3,5 @@ export interface UserRegisterRequestModel {
   password: string
   phoneNumber: string
 }
+
+export interface UserLoginRequestModel extends Omit<UserRegisterRequestModel, 'phoneNumber'> {}
